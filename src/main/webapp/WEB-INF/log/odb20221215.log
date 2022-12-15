@@ -1,0 +1,37 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-12-15 22:15:08 #1 store] 
+Database 'C:\Users\fifu1\eclipse-workspace\BetsWeb\src\main\resources\bets.temp' is opened by 12844@DESKTOP-02FFOUJ
+
+[2022-12-15 22:15:08 #2 type.registry] 
+New type domain.Question
+
+[2022-12-15 22:15:08 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-12-15 22:15:08 #4 type.registry] 
+New type domain.Event
+
+[2022-12-15 22:15:08 #5 type] 
+Type domain.Event is not enhanced.
+
+[2022-12-15 22:15:09 #6 type.registry] 
+New type java.util.Vector<domain.Question>
+
+[2022-12-15 22:15:09 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2022-12-15 22:54:23 #1 store] 
+Database 'C:\Users\fifu1\eclipse-workspace\BetsWeb\src\main\resources\bets.temp' has been recovered (tr. 1-5)
+
+[2022-12-15 22:54:23 #2 store] 
+Database 'C:\Users\fifu1\eclipse-workspace\BetsWeb\src\main\resources\bets.temp' is opened by 14480@DESKTOP-02FFOUJ
+
+[2022-12-15 22:54:23 #3 type] 
+Type domain.Question is not enhanced.
+
+[2022-12-15 22:54:23 #4 type] 
+Type domain.Event is not enhanced.
+
