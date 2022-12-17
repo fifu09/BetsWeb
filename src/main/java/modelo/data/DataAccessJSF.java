@@ -8,7 +8,7 @@ import domain.Event;
 
 public class DataAccessJSF {
 	
-	DataAccess da = new DataAccess(false);
+	DataAccess da = new DataAccess();
 	public DataAccessJSF() {
 		da.open();
 	}

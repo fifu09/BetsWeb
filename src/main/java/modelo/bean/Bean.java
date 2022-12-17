@@ -89,6 +89,7 @@ public class Bean {
 	public void onDateSelect(SelectEvent evento) {
 		fecha = (Date) evento.getObject();
 		eventos = da.getEvents(fecha);
+		System.out.println(eventos.toString());
 	}
 	public void eventoSelected(AjaxBehaviorEvent e) {
 		preguntas = evento.getQuestions();
