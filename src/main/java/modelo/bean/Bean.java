@@ -13,7 +13,8 @@ import org.primefaces.event.SelectEvent;
 import domain.Event;
 import domain.Question;
 import exceptions.QuestionAlreadyExist;
-import modelo.data.DataAccessJSF;
+import modelo.data.DataAccessHibernate;
+import modelo.data.DataAccessInterface;
 
 
 public class Bean {
@@ -23,7 +24,7 @@ public class Bean {
 	private float apuestaMinima;
 	private Event evento;
 	private Question pregunta;
-	private DataAccessJSF da = new DataAccessJSF();
+	private DataAccessInterface da = new DataAccessHibernate();
 	private List<Event> eventos = new ArrayList<Event>();
 	private List<Question> preguntas = new ArrayList<Question>();
 	
@@ -66,10 +67,10 @@ public class Bean {
 	public void setPregunta(Question pregunta) {
 		this.pregunta = pregunta;
 	}
-	public DataAccessJSF getDa() {
+	public DataAccessInterface getDa() {
 		return da;
 	}
-	public void setDa(DataAccessJSF da) {
+	public void setDa(DataAccessInterface da) {
 		this.da = da;
 	}
 	public List<Event> getEventos() {
@@ -102,7 +103,7 @@ public class Bean {
 	}
 	
 	public void eventoSelected(AjaxBehaviorEvent e) {
-		preguntas = evento.getQuestions();
+		preguntas = da.getQuestions(evento);
 		System.out.println(preguntas.toString());
 	}
 

@@ -18,11 +18,6 @@ xmlns:p="http://primefaces.org/ui">
 				<h1>Apartado de creacion de pregunta</h1>
 					
 				<h2>Elige un dia del calendario</h2>
-				<!-- <p:calendar id="fecha" value="#{bean.fecha}" navigator="false" mode="inline">
-					</p:calendar>
-				 <h2>
-					<h:outputText value="Fecha seleccionada: #" id="date" />
-				</h2> -->
 				<p:calendar id="fecha" value="#{bean.fecha}" navigator="false"
 					mode="inline">
 					<p:ajax event="dateSelect" listener="#{bean.onDateSelect}"
@@ -43,8 +38,6 @@ xmlns:p="http://primefaces.org/ui">
 							
 				<br><h:outputText value="Seleccionado: #{bean.evento}" id="evento" />
 				</br>
-				
-				
 				<h2>Pregunta</h2>
 			Crear pregunta para el evento:
 			<h:inputText id="pregunta" value="#{bean.nuevaPregunta}" size="50" required="true">
