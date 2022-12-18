@@ -5,6 +5,8 @@ import java.util.List;
 
 import dataAccess.DataAccess;
 import domain.Event;
+import domain.Question;
+import exceptions.QuestionAlreadyExist;
 
 public class DataAccessJSF {
 	
@@ -17,5 +19,9 @@ public class DataAccessJSF {
 		
 		return da.getEvents(date);
 	}
+	
+	public Question createQuestion(Event ev,String question, float betMinimum) throws QuestionAlreadyExist {
+        return da.createQuestion(ev, question, betMinimum);
+    }
 	
 }

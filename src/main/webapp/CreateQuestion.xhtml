@@ -18,25 +18,45 @@ xmlns:p="http://primefaces.org/ui">
 				<h1>Apartado de creacion de pregunta</h1>
 					
 				<h2>Elige un dia del calendario</h2>
-				<p:calendar id="fecha" value="#{bean.fecha}" navigator="false" mode="inline">
+				<!-- <p:calendar id="fecha" value="#{bean.fecha}" navigator="false" mode="inline">
 					</p:calendar>
 				 <h2>
 					<h:outputText value="Fecha seleccionada: #" id="date" />
+				</h2> -->
+				<p:calendar id="fecha" value="#{bean.fecha}" navigator="false"
+					mode="inline">
+					<p:ajax event="dateSelect" listener="#{bean.onDateSelect}"
+						update="date listaEventos" />
+				</p:calendar>
+				
+				<h2>
+					<h:outputText value="#{bean.fechaString}" id="date" />
 				</h2>
+				<h:selectOneMenu id="listaEventos" value="#{bean.evento}"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItem itemValue="Selecciona un evento"
+						noSelectionOption="true" />
+					<f:selectItems value="#{bean.eventos}" />
+					<p:ajax event="change" 
+						update="evento" />
+				</h:selectOneMenu>
+							
+				<br><h:outputText value="Seleccionado: #{bean.evento}" id="evento" />
+				</br>
+				
+				
 				<h2>Pregunta</h2>
 			Crear pregunta para el evento:
 			<h:inputText id="pregunta" value="#{bean.nuevaPregunta}" size="50" required="true">
-					<f:ajax pass="pregunta" render=""></f:ajax>
 				</h:inputText>
 				<br />
 			Apuesta mínima:
-			<h:inputText id="apuesta" value="#{bean.apuestaMinima}">
+			<h:inputText id="apuesta" value="#{bean.apuestaMinima}" size="50" required="true">
 					<f:validateLongRange minimum="1" maximum="999999" />
-					<f:ajax pass="apuesta" render="mensajes"></f:ajax>
 				</h:inputText>
 				<br />
 				<h:messages id="mensajes" class="error"></h:messages>
-				<h:commandButton value="Aceptar" action="#"/>
+				<h:commandButton value="Crear pregunta" action="#{bean.addQuestionToEvent}"/>
 			</h:form>
 		</ui:define>
 	</ui:composition>

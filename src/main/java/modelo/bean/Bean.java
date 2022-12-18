@@ -12,6 +12,7 @@ import org.primefaces.event.SelectEvent;
 
 import domain.Event;
 import domain.Question;
+import exceptions.QuestionAlreadyExist;
 import modelo.data.DataAccessJSF;
 
 
@@ -19,7 +20,7 @@ public class Bean {
 	private Date fecha;
 	private String fechaString;
 	private String nuevaPregunta;
-	private double apuestaMinima;
+	private float apuestaMinima;
 	private Event evento;
 	private Question pregunta;
 	private DataAccessJSF da = new DataAccessJSF();
@@ -84,14 +85,30 @@ public class Bean {
 		this.preguntas = preguntas;
 	}
 	
-	
+	public float getApuestaMinima() {
+		return apuestaMinima;
+	}
+
+
+	public void setApuestaMinima(float apuestaMinima) {
+		this.apuestaMinima = apuestaMinima;
+	}
+
+
 	public void onDateSelect(SelectEvent evento) {
 		fecha = (Date) evento.getObject();
 		eventos = da.getEvents(fecha);
 		System.out.println(eventos.toString());
 	}
+	
 	public void eventoSelected(AjaxBehaviorEvent e) {
 		preguntas = evento.getQuestions();
 		System.out.println(preguntas.toString());
 	}
+
+	public void addQuestionToEvent() throws QuestionAlreadyExist {
+        da.createQuestion(evento, nuevaPregunta, apuestaMinima);
+    }
+
+
 }
