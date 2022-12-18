@@ -85,7 +85,6 @@ public class Bean {
 	}
 	
 	
-	
 	public void onDateSelect(SelectEvent evento) {
 		fecha = (Date) evento.getObject();
 		eventos = da.getEvents(fecha);

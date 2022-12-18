@@ -23,6 +23,7 @@
 					<p:ajax event="dateSelect" listener="#{bean.onDateSelect}"
 						update="date listaEventos" />
 				</p:calendar>
+				
 				<h2>
 					<h:outputText value="#{bean.fechaString}" id="date" />
 				</h2>
@@ -34,6 +35,7 @@
 					<p:ajax event="change" listener="#{bean.eventoSelected}"
 						update="evento tablaPreguntas" />
 				</h:selectOneMenu>
+				
 				<h2>Preguntas</h2>
 				<h:outputText value="Seleccionado: #{bean.evento}" id="evento" />
 				
@@ -48,7 +50,6 @@
 					#{pregunta.question}
 				</h:column>
 				</h:dataTable>
-				
 
 			</h:form>
 		</ui:define>
