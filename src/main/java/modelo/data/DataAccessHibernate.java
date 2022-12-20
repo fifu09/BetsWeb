@@ -71,15 +71,19 @@ public class DataAccessHibernate implements DataAccessInterface {
 	@Override
 	public Question createQuestion(Event event, String question, float betMinimum) throws QuestionAlreadyExist {
 		// TODO Auto-generated method stub
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		Question pregunta = new Question(question, betMinimum, event);
-		pregunta.setEvent(event);
-		session.save(pregunta);
-		session.getTransaction().commit();
-		System.out.println("Pregunta "+question+" creada");
-		System.out.println("---------------------------------------------------------------------------");
-		return pregunta;
+		if(!existQuestion(event,question)) {
+			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			Question pregunta = new Question(question, betMinimum, event);
+			pregunta.setEvent(event);
+			session.save(pregunta);
+			session.getTransaction().commit();
+			System.out.println("Pregunta "+question+" creada");
+			System.out.println("---------------------------------------------------------------------------");
+			return pregunta;
+		}else {
+			return null;
+		}
 	}
 	
 	@Override
@@ -87,7 +91,6 @@ public class DataAccessHibernate implements DataAccessInterface {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-
 		Event evento = new Event(description, date);
 		session.save(evento);
 		session.getTransaction().commit();
@@ -101,33 +104,34 @@ public class DataAccessHibernate implements DataAccessInterface {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-
 		Query q = session.createQuery("select e from Event e where e.eventDate = :eventDate");
 		q.setParameter("eventDate", eventDate);
 		List<Event> resultado = q.list();
 		session.getTransaction().commit();
-
 		return resultado;
 	}
-	
 	@Override
 	public List<Question> getQuestions(Event evento) {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-
 		Query q = session.createQuery("select e from Question e where e.event.eventNumber = :eventNumber");
 		q.setParameter("eventNumber", evento.getEventNumber());
 		List<Question> resultado = q.list();
 		session.getTransaction().commit();
-
 		return resultado;
 	}
 
 	@Override
 	public boolean existQuestion(Event event, String question) {
-		// TODO Auto-generated method stub
-		return false;
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Query q = session.createQuery("select e from Question e where e.event.eventNumber = :eventNumber AND e.question = :questionString");
+		q.setParameter("eventNumber", event.getEventNumber());
+		q.setParameter("questionString", question);
+		List<Question> resultado = q.list();
+		session.getTransaction().commit();
+		return !resultado.isEmpty();
+		
 	}
-
 }

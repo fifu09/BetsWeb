@@ -110,6 +110,4 @@ public class Bean {
 	public void addQuestionToEvent() throws QuestionAlreadyExist {
         da.createQuestion(evento, nuevaPregunta, apuestaMinima);
     }
-
-
 }
